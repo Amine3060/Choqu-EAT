@@ -1,0 +1,557 @@
+GUIDE DE PROJET
+APPLICATION DE GESTION DES AUDITS — CHOQUET CONSEIL
+====================================================
+
+Type de projet : Application web responsive
+Public concerné : Consultants, clients et restaurateurs
+Objectif : Digitaliser les audits, automatiser les rapports et faciliter le suivi des plans d’action.
+
+SOMMAIRE
+--------
+1. Présentation du projet
+2. Fonctionnement général attendu
+3. Les trois espaces utilisateurs
+4. Fonctionnalités à développer
+5. Organisation des pages
+6. Structure prévisionnelle de la base de données
+7. Technologies recommandées
+8. Développement étape par étape
+9. Design et ergonomie
+10. Tests et validation
+11. Résultat final attendu
+12. Liste de contrôle du projet
+
+
+1. PRÉSENTATION DU PROJET
+=========================
+
+Choquet Conseil est un cabinet spécialisé dans l’accompagnement et l’audit de la restauration collective. Les consultants réalisent des contrôles portant notamment sur l’hygiène, le respect des engagements contractuels et la qualité de service.
+
+Aujourd’hui, les observations sont principalement recueillies sur papier, puis retranscrites pour préparer les rapports. Cette méthode demande du temps et rend le partage des résultats ainsi que le suivi des actions correctives moins fluides.
+
+MISSION DU PROJET
+-----------------
+Concevoir une application web permettant de réaliser les audits sur tablette, de centraliser les observations, de générer les rapports et de suivre les plans d’action depuis une plateforme commune.
+
+L’application devra être responsive afin de fonctionner sur ordinateur, tablette et téléphone. Une attention particulière devra être portée à son utilisation sur le terrain.
+
+
+2. FONCTIONNEMENT GÉNÉRAL ATTENDU
+=================================
+
+L’application doit accompagner l’ensemble du processus, depuis la préparation de l’audit jusqu’au suivi des actions correctives.
+
+1. Le consultant crée un audit et sélectionne le client ainsi que l’établissement concerné.
+2. Il choisit la grille d’audit adaptée à cet établissement.
+3. Il réalise les contrôles à partir des rubriques, items et sous-items.
+4. Il saisit les observations, attribue un statut et ajoute des photographies si nécessaire.
+5. L’application enregistre les informations et calcule les résultats selon les règles définies.
+6. Le consultant vérifie les résultats et valide le rapport.
+7. L’application génère le rapport PDF et le publie dans les espaces autorisés.
+8. Le restaurateur consulte les constats et complète le plan d’action prérempli.
+9. Le client et Choquet Conseil consultent le plan d’action soumis et sont informés de son envoi.
+
+POINT ESSENTIEL
+---------------
+L’outil doit réduire les tâches de saisie et de mise en forme afin que les consultants puissent consacrer davantage de temps à l’observation, à l’analyse et au conseil.
+
+
+3. LES TROIS ESPACES UTILISATEURS
+=================================
+
+3.1 ESPACE CONSULTANT — CHOQUET CONSEIL
+--------------------------------------
+
+Cet espace permet de préparer, réaliser et suivre les audits.
+
+Le consultant doit pouvoir :
+- Se connecter à son compte et accéder aux établissements autorisés.
+- Consulter et gérer les clients et les établissements.
+- Créer, modifier et personnaliser les grilles d’audit.
+- Organiser les grilles en rubriques, items et sous-items.
+- Créer un audit et le réaliser depuis une tablette.
+- Saisir des observations, des commentaires et des photographies.
+- Attribuer un statut à chaque constat.
+- Consulter les résultats et les notes calculées.
+- Générer, vérifier et publier un rapport PDF.
+- Consulter l’historique des audits.
+
+3.2 ESPACE CLIENT
+-----------------
+
+Cet espace donne au client une vue synthétique des résultats et de leur évolution.
+
+Il doit permettre de :
+- Consulter un tableau de bord général.
+- Voir les notes par catégorie : hygiène, engagements contractuels et qualité de service.
+- Consulter les rapports PDF publiés.
+- Accéder à l’historique des audits de ses établissements.
+- Suivre les plans d’action et leur état d’avancement.
+- Visualiser les indicateurs définis avec Choquet Conseil.
+
+3.3 ESPACE RESTAURATEUR
+-----------------------
+
+Cet espace permet au restaurateur de répondre aux constats et de formaliser les corrections prévues.
+
+Il doit permettre de :
+- Consulter les rapports d’audit et les photographies associées.
+- Identifier les constats non conformes et ceux à surveiller.
+- Accéder à un plan d’action prérempli à partir de ces constats.
+- Décrire les actions correctives prévues.
+- Indiquer un responsable et une date d’échéance.
+- Enregistrer les réponses et soumettre le plan d’action.
+
+Après soumission, le plan doit être accessible au client et à Choquet Conseil. Une notification doit signaler son envoi.
+
+
+4. FONCTIONNALITÉS À DÉVELOPPER
+================================
+
+4.1 AUTHENTIFICATION ET GESTION DES ACCÈS
+-----------------------------------------
+
+Mettre en place une connexion sécurisée et des droits adaptés à chaque profil.
+
+CONSULTANT
+Créer et gérer les audits, les grilles, les rapports et les publications.
+
+CLIENT
+Consulter les résultats, les rapports, les historiques et les plans d’action de ses établissements.
+
+RESTAURATEUR
+Consulter les rapports et compléter puis soumettre les plans d’action autorisés.
+
+Les règles d’accès devront être contrôlées côté serveur, et pas uniquement en masquant des éléments dans l’interface.
+
+4.2 GESTION DES GRILLES ET DES AUDITS
+------------------------------------
+
+- Créer et personnaliser des grilles d’audit.
+- Gérer les rubriques, items et sous-items.
+- Associer une grille à un type d’établissement ou à un client.
+- Créer un audit à partir d’une grille existante.
+- Enregistrer un audit en cours et permettre sa reprise.
+
+4.3 STATUTS DES CONSTATS
+------------------------
+
+Chaque constat doit avoir l’un des trois statuts suivants :
+
+CONFORME
+Le point contrôlé respecte les exigences. Couleur d’interface recommandée : vert.
+
+À SURVEILLER
+Le point nécessite une attention ou un suivi. Couleur d’interface recommandée : orange.
+
+NON CONFORME
+Une anomalie ou un écart a été constaté. Couleur d’interface recommandée : rouge.
+
+Les statuts doivent être visibles rapidement, sans rendre l’écran trop chargé. Ils doivent pouvoir être sélectionnés facilement sur tablette.
+
+4.4 PHOTOGRAPHIES ET COMMENTAIRES
+---------------------------------
+
+- Prendre une photo depuis la tablette ou importer une image.
+- Associer chaque photo au constat correspondant.
+- Ajouter un commentaire à une observation.
+- Afficher les photos dans le détail du constat et dans le rapport PDF.
+
+4.5 CALCUL DES RÉSULTATS
+------------------------
+
+L’application devra calculer les résultats par catégorie et, si la méthode retenue le prévoit, une note globale.
+
+À DÉFINIR AVEC CHOQUET CONSEIL :
+- Les règles de notation.
+- Les coefficients éventuels.
+- Le traitement des items non applicables.
+- La méthode de calcul des indicateurs.
+
+Il ne faut pas inventer ces règles pendant le développement.
+
+4.6 GÉNÉRATION ET PUBLICATION DU RAPPORT PDF
+--------------------------------------------
+
+Le rapport doit être construit automatiquement à partir des données de l’audit. Il pourra notamment contenir :
+
+1. Les informations du client et de l’établissement.
+2. La date de l’audit et le nom du consultant.
+3. Une synthèse générale.
+4. Les résultats et notes par catégorie.
+5. Les constats, leurs statuts et les commentaires.
+6. Les photographies associées.
+7. Une synthèse des priorités et des points à corriger.
+
+Le consultant doit pouvoir contrôler le rapport avant sa publication.
+
+OBJECTIF DE DÉLAI
+Publier le rapport dans les 48 heures suivant l’audit, contre un délai actuel annoncé de 5 à 10 jours.
+
+4.7 PLAN D’ACTION
+-----------------
+
+À partir des constats « Non conforme » et « À surveiller », l’application prépare une liste de points à traiter.
+
+Pour chaque point, le restaurateur peut renseigner :
+- L’action corrective envisagée.
+- Le responsable de sa mise en œuvre.
+- La date d’échéance.
+- Un commentaire complémentaire.
+- L’état d’avancement, si cette fonction est retenue.
+
+Le restaurateur peut enregistrer son travail, puis soumettre le plan. Le système rend alors le plan consultable par le client et le cabinet et déclenche les notifications prévues.
+
+4.8 NOTIFICATIONS
+-----------------
+
+- Informer les personnes concernées lorsqu’un rapport est publié.
+- Informer le client et Choquet Conseil lorsqu’un plan d’action est soumis.
+- Conserver un historique des notifications importantes.
+
+4.9 FONCTIONNEMENT HORS CONNEXION
+---------------------------------
+
+Le consultant doit pouvoir poursuivre un audit lorsque le réseau est indisponible.
+
+Les données nécessaires doivent être préparées avant la visite, enregistrées localement pendant l’audit, puis synchronisées lorsque la connexion revient.
+
+Il faudra également prévoir la gestion des conflits si une même information a été modifiée à plusieurs endroits.
+
+
+5. ORGANISATION DES PAGES DE L’APPLICATION
+==========================================
+
+PAGES COMMUNES
+- Connexion et récupération du mot de passe.
+- Profil et informations du compte.
+- Notifications.
+
+PAGES CONSULTANT
+- Tableau de bord consultant.
+- Liste des clients et établissements.
+- Gestion des grilles d’audit.
+- Création et réalisation d’un audit.
+- Détail des observations et des résultats.
+- Prévisualisation, validation et publication du rapport.
+- Historique des audits.
+
+PAGES CLIENT
+- Tableau de bord et indicateurs.
+- Liste des audits et historique.
+- Détail d’un audit et consultation du rapport PDF.
+- Suivi des plans d’action.
+
+PAGES RESTAURATEUR
+- Tableau de bord restaurateur.
+- Liste des audits accessibles.
+- Consultation du rapport et des constats.
+- Édition et soumission du plan d’action.
+
+
+6. STRUCTURE PRÉVISIONNELLE DE LA BASE DE DONNÉES
+=================================================
+
+La base de données devra centraliser les utilisateurs, les établissements, les grilles, les audits et les actions correctives.
+
+TABLES ENVISAGÉES
+
+users
+Comptes et informations des utilisateurs.
+
+roles
+Rôles et permissions.
+
+clients
+Organisations clientes.
+
+establishments
+Restaurants et établissements audités.
+
+audit_grids
+Modèles de grilles d’audit.
+
+sections
+Rubriques des grilles.
+
+items
+Items et sous-items contrôlés.
+
+audits
+Informations générales des audits réalisés.
+
+observations
+Réponses, statuts et commentaires des constats.
+
+photos
+Fichiers photographiques liés aux observations.
+
+action_plans
+Plans d’action issus des audits.
+
+corrective_actions
+Actions, responsables, échéances et avancement.
+
+notifications
+Notifications envoyées aux utilisateurs.
+
+À FAIRE AVANT LE DÉVELOPPEMENT
+Établir le schéma relationnel, préciser les clés étrangères, les règles de suppression et les droits d’accès aux données de chaque client et établissement.
+
+
+7. TECHNOLOGIES RECOMMANDÉES
+=============================
+
+La sélection définitive dépendra des compétences de l’équipe, de l’hébergement disponible et des contraintes du projet.
+
+HTML, CSS ET JAVASCRIPT
+Technologies fondamentales du web.
+
+REACT
+Construction de l’interface utilisateur.
+
+NODE.JS
+Serveur et logique métier.
+
+POSTGRESQL
+Stockage structuré des données.
+
+GIT ET GITHUB
+Suivi des versions et travail en équipe.
+
+VISUAL STUDIO CODE
+Environnement de développement.
+
+Il faudra aussi prévoir une solution adaptée pour l’authentification, le stockage des photos, la génération des PDF, les notifications et la synchronisation hors connexion.
+
+
+8. DÉVELOPPEMENT ÉTAPE PAR ÉTAPE
+================================
+
+ÉTAPE 1 — PRÉPARER L’ENVIRONNEMENT
+Objectif : disposer des outils et d’une structure de projet propre.
+
+1. Installer Visual Studio Code.
+2. Installer Node.js et Git.
+3. Créer le dossier du projet.
+4. Initialiser le projet React.
+5. Créer une première structure de dossiers.
+6. Vérifier que l’application démarre correctement.
+
+ÉTAPE 2 — CONCEVOIR LES MAQUETTES
+Objectif : définir les parcours des trois profils avant de développer toutes les pages.
+
+1. Définir la navigation et les couleurs.
+2. Créer la maquette de l’espace consultant.
+3. Créer la maquette de l’espace client.
+4. Créer la maquette de l’espace restaurateur.
+5. Prévoir les écrans de saisie sur tablette.
+6. Faire valider les parcours et les maquettes.
+
+ÉTAPE 3 — CONCEVOIR LA BASE DE DONNÉES
+Objectif : structurer les données avant de connecter les écrans.
+
+1. Définir les entités et leurs relations.
+2. Créer les tables et leurs identifiants.
+3. Définir les clés étrangères et les contraintes.
+4. Préparer des données de test.
+5. Vérifier les règles d’accès par client et établissement.
+
+ÉTAPE 4 — DÉVELOPPER L’AUTHENTIFICATION
+
+1. Créer la page de connexion.
+2. Mettre en place la gestion sécurisée des comptes.
+3. Définir les rôles consultant, client et restaurateur.
+4. Protéger les pages et les données selon les permissions.
+5. Tester les accès de chaque profil.
+
+ÉTAPE 5 — DÉVELOPPER LA GESTION DES AUDITS
+
+1. Créer la gestion des clients et des établissements.
+2. Créer les grilles d’audit personnalisables.
+3. Gérer les rubriques, items et sous-items.
+4. Créer un audit à partir d’une grille.
+5. Permettre la saisie des observations et commentaires.
+6. Ajouter les statuts et les photographies.
+7. Enregistrer les données et reprendre un audit en cours.
+
+ÉTAPE 6 — DÉVELOPPER LES CALCULS
+
+1. Faire valider les règles de notation.
+2. Calculer les résultats par catégorie.
+3. Calculer les indicateurs globaux si nécessaire.
+4. Identifier les constats à surveiller et non conformes.
+5. Vérifier les résultats avec des cas de test.
+
+ÉTAPE 7 — GÉNÉRER LES RAPPORTS PDF
+
+1. Créer un modèle de rapport professionnel.
+2. Insérer les informations de l’audit.
+3. Ajouter les notes, constats, commentaires et photos.
+4. Créer une synthèse des priorités.
+5. Permettre au consultant de prévisualiser le rapport.
+6. Mettre en place la validation et la publication.
+
+ÉTAPE 8 — DÉVELOPPER L’ESPACE CLIENT
+
+1. Créer le tableau de bord client.
+2. Afficher les notes par catégorie.
+3. Afficher les derniers audits et les historiques.
+4. Permettre la consultation des rapports publiés.
+5. Afficher les plans d’action et leur suivi.
+
+ÉTAPE 9 — DÉVELOPPER L’ESPACE RESTAURATEUR
+
+1. Afficher les audits et rapports accessibles.
+2. Afficher les constats concernés.
+3. Générer le plan d’action prérempli.
+4. Créer les champs action corrective, responsable et échéance.
+5. Permettre l’enregistrement et la modification du plan.
+6. Permettre sa soumission.
+
+ÉTAPE 10 — AJOUTER LES NOTIFICATIONS
+
+1. Définir les événements qui déclenchent une notification.
+2. Notifier les utilisateurs lors de la publication d’un rapport.
+3. Notifier le client et Choquet Conseil lors de la soumission d’un plan.
+4. Afficher l’historique des notifications.
+
+ÉTAPE 11 — AJOUTER LE MODE HORS CONNEXION
+
+1. Définir les données nécessaires avant le départ en audit.
+2. Permettre leur stockage local sécurisé.
+3. Enregistrer les observations et photos sans réseau.
+4. Détecter le retour de connexion.
+5. Synchroniser les informations avec le serveur.
+6. Prévoir une stratégie de résolution des conflits.
+
+ÉTAPE 12 — TESTER ET FINALISER
+
+1. Tester chaque profil et ses autorisations.
+2. Tester la création et la réalisation d’un audit.
+3. Tester les photos, les calculs et les PDF.
+4. Tester le plan d’action et les notifications.
+5. Tester l’application sur tablette et téléphone.
+6. Tester le mode hors connexion et la synchronisation.
+7. Corriger les problèmes identifiés.
+8. Préparer la documentation et le guide de prise en main.
+
+
+9. DESIGN ET ERGONOMIE
+======================
+
+L’interface doit inspirer confiance et faciliter le travail quotidien. Elle doit rester sobre, cohérente et facile à lire, notamment pendant les audits sur le terrain.
+
+PALETTE DE COULEURS PROPOSÉE
+
+Bleu foncé
+Utilisation : titres principaux, navigation et éléments structurants.
+
+Bleu
+Utilisation : titres secondaires et actions principales.
+
+Bleu-vert
+Utilisation : repères, accents et éléments de navigation.
+
+Vert
+Utilisation : constat conforme.
+
+Orange
+Utilisation : constat à surveiller.
+
+Rouge
+Utilisation : constat non conforme.
+
+Gris
+Utilisation : textes secondaires, séparateurs et fonds discrets.
+
+PRINCIPES À RESPECTER
+
+- Utiliser une police lisible et des tailles de texte confortables.
+- Prévoir des espaces suffisants entre les sections.
+- Utiliser des boutons assez grands pour une utilisation tactile.
+- Rendre les statuts immédiatement reconnaissables.
+- Éviter les écrans trop chargés et les formulaires trop longs.
+- Conserver une navigation cohérente entre les différents espaces.
+- Vérifier le contraste des couleurs pour garantir la lisibilité.
+
+
+10. TESTS ET VALIDATION
+=======================
+
+La solution devra être expérimentée avec les deux consultants de Choquet Conseil, sur au moins trois audits pilotes.
+
+INDICATEURS ET OBJECTIFS
+
+- Audits pilotes : au moins 3 audits réalisés.
+- Satisfaction des utilisateurs : note moyenne d’au moins 4/5 sur la facilité d’utilisation et le temps gagné.
+- Temps de rédaction : réduction d’au moins 80 % par rapport au fonctionnement actuel.
+- Délai de restitution : rapport disponible sous 48 heures maximum.
+- Utilisation sur tablette : parcours d’audit utilisable sur tablette.
+- Mode hors connexion : saisie hors ligne et synchronisation testées.
+
+Les mesures devront être réalisées avec une méthode de comparaison définie : temps passé avant et après la mise en place de l’application, ainsi que retours des utilisateurs pilotes.
+
+
+11. RÉSULTAT FINAL ATTENDU
+==========================
+
+À la fin du projet, Choquet Conseil doit disposer d’une première version opérationnelle de son application web.
+
+Cette version devra permettre :
+
+- Aux consultants de préparer et réaliser les audits depuis une tablette.
+- De centraliser les observations, les statuts et les photographies.
+- De calculer les résultats selon une méthode validée.
+- De générer et publier des rapports PDF structurés.
+- Aux clients de consulter les résultats et leur historique.
+- Aux restaurateurs de compléter et soumettre les plans d’action.
+- De notifier les personnes concernées aux étapes importantes.
+- De retrouver les informations dans un espace centralisé et sécurisé.
+
+OBJECTIF FINAL
+Remplacer une méthode de travail principalement papier et manuelle par un outil numérique fiable, rapide et partagé, tout en améliorant la qualité du suivi et de la restitution des audits.
+
+
+12. LISTE DE CONTRÔLE DU PROJET
+===============================
+
+PRÉPARATION
+[ ] Installer les outils nécessaires.
+[ ] Créer le projet et organiser les fichiers.
+[ ] Valider les technologies et l’architecture.
+[ ] Recueillir les règles métier auprès de Choquet Conseil.
+
+CONCEPTION ET INTERFACE
+[ ] Réaliser les maquettes des trois espaces.
+[ ] Créer la navigation et les tableaux de bord.
+[ ] Adapter les interfaces aux tablettes.
+
+FONCTIONNALITÉS
+[ ] Développer l’authentification et les droits d’accès.
+[ ] Développer la gestion des clients et établissements.
+[ ] Développer les grilles d’audit personnalisables.
+[ ] Développer la saisie des observations et les statuts.
+[ ] Ajouter les commentaires et photographies.
+[ ] Mettre en place les calculs de notation.
+[ ] Générer et publier les rapports PDF.
+[ ] Développer les plans d’action.
+[ ] Mettre en place les notifications.
+[ ] Développer le mode hors connexion et la synchronisation.
+
+FINALISATION
+[ ] Tester les trois espaces utilisateurs.
+[ ] Vérifier la sécurité et les permissions.
+[ ] Réaliser les trois audits pilotes minimum.
+[ ] Mesurer le temps gagné et la satisfaction.
+[ ] Corriger les problèmes identifiés.
+[ ] Rédiger la documentation technique.
+[ ] Préparer le guide de prise en main.
+[ ] Présenter le bilan des tests pilotes.
+
+
+FIN DU GUIDE
+------------
+
+CHOQUET CONSEIL
+Guide de projet — Application de gestion des audits en restauration collective
